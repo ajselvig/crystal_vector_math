@@ -18,8 +18,8 @@ module VectorMath
 
     def self.parse(s)
       comps = s.split(",")
-      x = comps.first.to_f
-      y = comps.second.to_f
+      x = comps[0].to_f
+      y = comps[1].to_f
       Vec2.new x, y
     end
 

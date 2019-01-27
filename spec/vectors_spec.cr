@@ -29,6 +29,10 @@ describe "Vec2" do
     Vec2.new(1.0, 2.0).normalize.mag.should be_close(1.0, 0.00000001)
   end
 
+  it "parses" do
+    Vec2.parse("10.1, -3.4").should eq(Vec2.new(10.1, -3.4))
+  end
+
 end
 
 describe "Vec3" do

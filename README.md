@@ -15,7 +15,7 @@ It's currently quite small, but includes:
 1. Add the dependency to your `shard.yml`:
 ```yaml
 dependencies:
-  crystal_vector_math:
+  vector_math:
     github: ajselvig/crystal_vector_math
 ```
 2. Run `shards install`
