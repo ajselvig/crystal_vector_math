@@ -27,9 +27,9 @@ require "vector_math"
 include VectorMath
 
 # 2D vectors
-Vec2.new(1.0, 2.0) + Vec2.new(3.0, 4.0)
+vec2(1.0, 2.0) + vec2(3.0, 4.0)
 # => [4.0, 6.0]
-Vec2.new(2.0, 4.0, 6.0) / 2
+vec2(2.0, 4.0, 6.0) / 2
 # => [1.0, 2.0, 3.0]
 ```
 

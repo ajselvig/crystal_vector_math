@@ -4,7 +4,7 @@ include VectorMath
 
 describe "Mat3" do
 
-  it "adds" do 
+  it "adds" do
     sum = Mat3.unit + Mat3.unit
     sum.x0.should eq(2.0)
   end
@@ -15,8 +15,8 @@ describe "Mat3" do
   end
 
   it "multiplies" do
-    a = Mat3.new 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0
-    b = Mat3.new 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0
+    a = mat3 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0
+    b = mat3 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0
     prod = a * b
     prod.x0.should eq(30.0)
     prod.x1.should eq(24.0)
@@ -76,8 +76,8 @@ describe "Mat4" do
   end
 
   it "multiplies by another matrix" do
-    a = Mat4.new 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0
-    b = Mat4.new 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0
+    a = mat4 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0
+    b = mat4 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0
     prod = a * b
     prod.x0.should eq(80.0)
     prod.x1.should eq(70.0)
@@ -98,7 +98,7 @@ describe "Mat4" do
   end
 
   it "multiplies by a vector" do
-    a = Mat4.new 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0
+    a = mat4 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0
     b = Vec4.new 1.0, 2.0, 3.0, 4.0
     prod = a * b
     prod.x.should eq(30.0)

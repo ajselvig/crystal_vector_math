@@ -30,7 +30,7 @@ module VectorMath
     end
 
     def +(scalar)
-      Mat3.new(
+      mat3(
         x0 + scalar, x1 + scalar, x2 + scalar,
         y0 + scalar, y1 + scalar, y2 + scalar,
         z0 + scalar, z1 + scalar, z2 + scalar
@@ -38,7 +38,7 @@ module VectorMath
     end
 
     def -(scalar)
-      Mat3.new(
+      mat3(
         x0 - scalar, x1 - scalar, x2 - scalar,
         y0 - scalar, y1 - scalar, y2 - scalar,
         z0 - scalar, z1 - scalar, z2 - scalar
@@ -46,7 +46,7 @@ module VectorMath
     end
 
     def +(other)
-      Mat3.new(
+      mat3(
         x0 + other.x0, x1 + other.x1, x2 + other.x2,
         y0 + other.y0, y1 + other.y1, y2 + other.y2,
         z0 + other.z0, z1 + other.z1, z2 + other.z2
@@ -54,7 +54,7 @@ module VectorMath
     end
 
     def -(other)
-      Mat3.new(
+      mat3(
         x0 - other.x0, x1 - other.x1, x2 - other.x2,
         y0 - other.y0, y1 - other.y1, y2 - other.y2,
         z0 - other.z0, z1 - other.z1, z2 - other.z2
@@ -62,7 +62,7 @@ module VectorMath
     end
 
     def *(other : Mat3)
-      Mat3.new(
+      mat3(
         x0*other.x0 + x1*other.y0 + x2*other.z0,
         x0*other.x1 + x1*other.y1 + x2*other.z1,
         x0*other.x2 + x1*other.y2 + x2*other.z2,
@@ -76,13 +76,20 @@ module VectorMath
     end
 
     def self.unit
-      Mat3.new(
+      mat3(
         1.0, 0.0, 0.0,
         0.0, 1.0, 0.0,
         0.0, 0.0, 1.0
       )
     end
 
+  end
+
+  # convenience function for creating Mat3
+  def mat3(x0 : Float64, x1 : Float64, x2 : Float64,
+    y0 : Float64, y1 : Float64, y2 : Float64,
+    z0 : Float64, z1 : Float64, z2 : Float64)
+    Mat3.new(x0, x1, x2, y0, y1, y2, z0, z1, z2)
   end
 
   # 4D matrix
@@ -119,7 +126,7 @@ module VectorMath
     end
 
     def +(scalar)
-      Mat4.new(
+      mat4(
         x0 + scalar, x1 + scalar, x2 + scalar, x3 + scalar,
         y0 + scalar, y1 + scalar, y2 + scalar, y3 + scalar,
         z0 + scalar, z1 + scalar, z2 + scalar, z3 + scalar,
@@ -128,7 +135,7 @@ module VectorMath
     end
 
     def -(scalar)
-      Mat4.new(
+      mat4(
         x0 - scalar, x1 - scalar, x2 - scalar, x3 - scalar,
         y0 - scalar, y1 - scalar, y2 - scalar, y3 - scalar,
         z0 - scalar, z1 - scalar, z2 - scalar, z3 - scalar,
@@ -137,7 +144,7 @@ module VectorMath
     end
 
     def +(other)
-      Mat4.new(
+      mat4(
         x0 + other.x0, x1 + other.x1, x2 + other.x2, x3 + other.x3,
         y0 + other.y0, y1 + other.y1, y2 + other.y2, y3 + other.y3,
         z0 + other.z0, z1 + other.z1, z2 + other.z2, z3 + other.z3,
@@ -146,7 +153,7 @@ module VectorMath
     end
 
     def -(other)
-      Mat4.new(
+      mat4(
         x0 - other.x0, x1 - other.x1, x2 - other.x2, x3 - other.x3,
         y0 - other.y0, y1 - other.y1, y2 - other.y2, y3 - other.y3,
         z0 - other.z0, z1 - other.z1, z2 - other.z2, z3 - other.z3,
@@ -155,7 +162,7 @@ module VectorMath
     end
 
     def *(other : Mat4)
-      Mat4.new(
+      mat4(
         x0*other.x0 + x1*other.y0 + x2*other.z0 + x3*other.w0,
         x0*other.x1 + x1*other.y1 + x2*other.z1 + x3*other.w1,
         x0*other.x2 + x1*other.y2 + x2*other.z2 + x3*other.w2,
@@ -185,7 +192,7 @@ module VectorMath
     end
 
     def translate(vec : Vec3)
-      self * Mat4.new(
+      self * mat4(
         1.0, 0.0, 0.0, vec.x,
         0.0, 1.0, 0.0, vec.y,
         0.0, 0.0, 1.0, vec.z,
@@ -197,7 +204,7 @@ module VectorMath
       rad = deg2rad deg
       cos = Math.cos rad
       sin = Math.sin rad
-      self * Mat4.new(
+      self * mat4(
         1.0, 0.0, 0.0, 0.0,
         0.0, cos, -sin, 0.0,
         0.0, sin, cos, 0.0,
@@ -209,7 +216,7 @@ module VectorMath
       rad = deg2rad deg
       cos = Math.cos rad
       sin = Math.sin rad
-      self * Mat4.new(
+      self * mat4(
         cos, 0.0, sin, 0.0,
         0.0, 1.0, 0.0, 0.0,
         -sin, 0.0, cos, 0.0,
@@ -221,7 +228,7 @@ module VectorMath
       rad = deg2rad deg
       cos = Math.cos rad
       sin = Math.sin rad
-      self * Mat4.new(
+      self * mat4(
         cos, -sin, 0.0, 0.0,
         sin, cos, 0.0, 0.0,
         0.0, 0.0, 1.0, 0.0,
@@ -231,7 +238,7 @@ module VectorMath
 
     # returns the rotation component of the matrix
     def rotation
-      Mat4.new(
+      mat4(
         x0, x1, x2, 0.0,
         y0, y1, y2, 0.0,
         z0, z1, z2, 0.0,
@@ -241,7 +248,7 @@ module VectorMath
 
 
     def self.unit
-      Mat4.new(
+      mat4(
         1.0, 0.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 0.0,
         0.0, 0.0, 1.0, 0.0,
@@ -249,6 +256,14 @@ module VectorMath
       )
     end
 
+  end
+
+  # convenience function for creating Mat3
+  def mat4(x0 : Float64, x1 : Float64, x2 : Float64, x3 : Float64,
+    y0 : Float64, y1 : Float64, y2 : Float64, y3 : Float64,
+    z0 : Float64, z1 : Float64, z2 : Float64, z3 : Float64,
+    w0 : Float64, w1 : Float64, w2 : Float64, w3 : Float64)
+    Mat4.new(x0, x1, x2, x3, y0, y1, y2, y3, z0, z1, z2, z3, w0, w1, w2, w3)
   end
 
 

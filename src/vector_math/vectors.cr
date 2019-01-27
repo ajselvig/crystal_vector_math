@@ -5,7 +5,7 @@ module VectorMath
   struct Vec2
     getter x, y
 
-    def initialize(@x : Float64, @y : Float64)
+    def initialize(@x : Float64 = 0.0, @y : Float64 = 0.0)
     end
 
     def to_s
@@ -20,31 +20,31 @@ module VectorMath
       comps = s.split(",")
       x = comps[0].to_f
       y = comps[1].to_f
-      Vec2.new x, y
+      vec2 x, y
     end
 
     def +(other : Vec2)
-      Vec2.new(x + other.x, y + other.y)
+      vec2(x + other.x, y + other.y)
     end
 
     def +(other : Float64)
-      Vec2.new(x + other, y + other)
+      vec2(x + other, y + other)
     end
 
     def -(other)
-      Vec2.new(x - other.x, y - other.y)
+      vec2(x - other.x, y - other.y)
     end
 
     def *(scalar : Float64)
-      Vec2.new(x*scalar, y*scalar)
+      vec2(x*scalar, y*scalar)
     end
 
     def *(other : Vec2)
-      Vec2.new(x*other.x, y*other.y)
+      vec2(x*other.x, y*other.y)
     end
 
     def /(scalar)
-      Vec2.new(x/scalar, y/scalar)
+      vec2(x/scalar, y/scalar)
     end
 
     def mag
@@ -53,28 +53,33 @@ module VectorMath
 
     def normalize
       m = mag
-      Vec2.new(x / m, y / m)
+      vec2(x / m, y / m)
     end
 
     def self.unit
-      Vec2.new(1.0, 1.0)
+      vec2(1.0, 1.0)
     end
 
     def self.x_unit
-      Vec2.new(1.0, 0.0)
+      vec2(1.0, 0.0)
     end
 
     def self.y_unit
-      Vec2.new(0.0, 1.0)
+      vec2(0.0, 1.0)
     end
 
+  end
+
+  # convenience function for creating Vec2
+  def vec2(x : Float64 = 0.0, y : Float64 = 0.0)
+    Vec2.new x, y
   end
 
   # An immutable set of x/y/z coordinates
   struct Vec3
     getter x, y, z
 
-    def initialize(@x : Float64, @y : Float64, @z : Float64)
+    def initialize(@x : Float64 = 0.0, @y : Float64 = 0.0, @z : Float64 = 0.0)
     end
 
     def initialize(values : Array(Float64))
@@ -88,19 +93,19 @@ module VectorMath
     end
 
     def +(other)
-      Vec3.new(x + other.x, y + other.y, z + other.z)
+      vec3(x + other.x, y + other.y, z + other.z)
     end
 
     def -(other)
-      Vec3.new(x - other.x, y - other.y, z - other.z)
+      vec3(x - other.x, y - other.y, z - other.z)
     end
 
     def *(scalar)
-      Vec3.new(x*scalar, y*scalar, z*scalar)
+      vec3(x*scalar, y*scalar, z*scalar)
     end
 
     def /(scalar)
-      Vec3.new(x/scalar, y/scalar, z/scalar)
+      vec3(x/scalar, y/scalar, z/scalar)
     end
 
     def mag
@@ -109,44 +114,48 @@ module VectorMath
 
     def normalize
       m = mag
-      Vec3.new(x / m, y / m, z / m)
+      vec3(x / m, y / m, z / m)
     end
 
     # throw away the z component
     def to_vec2
-      Vec2.new x, y
+      vec2 x, y
     end
 
     # add w=1.0
     def to_vec4
-      Vec4.new x, y, z, 1.0
+      vec4 x, y, z, 1.0
     end
 
     def self.unit
-      Vec3.new(1.0, 1.0, 1.0)
+      vec3(1.0, 1.0, 1.0)
     end
 
     def self.x_unit
-      Vec3.new(1.0, 0.0, 0.0)
+      vec3(1.0, 0.0, 0.0)
     end
 
     def self.y_unit
-      Vec3.new(0.0, 1.0, 0.0)
+      vec3(0.0, 1.0, 0.0)
     end
 
     def self.z_unit
-      Vec3.new(0.0, 0.0, 1.0)
+      vec3(0.0, 0.0, 1.0)
     end
 
   end
 
+  # convenience function for creating Vec3
+  def vec3(x : Float64 = 0.0, y : Float64 = 0.0, z : Float64 = 0.0)
+    Vec3.new x, y, z
+  end
 
 
   # An immutable set of x/y/z/w homogeneous coordinates
   struct Vec4
     getter x, y, z, w
 
-    def initialize(@x : Float64, @y : Float64, @z : Float64, @w : Float64 = 1.0)
+    def initialize(@x : Float64 = 0.0, @y : Float64 = 0.0, @z : Float64 = 0.0, @w : Float64 = 1.0)
     end
 
     def initialize(values : Array(Float64))
@@ -161,20 +170,20 @@ module VectorMath
     end
 
     def +(other)
-      Vec4.new(x + other.x, y + other.y, z + other.z, w + other.w)
+      vec4(x + other.x, y + other.y, z + other.z, w + other.w)
     end
 
 
     def -(other)
-      Vec4.new(x - other.x, y - other.y, z - other.z, w - other.w)
+      vec4(x - other.x, y - other.y, z - other.z, w - other.w)
     end
 
     def *(scalar)
-      Vec4.new(x*scalar, y*scalar, z*scalar, w*scalar)
+      vec4(x*scalar, y*scalar, z*scalar, w*scalar)
     end
 
     def /(scalar)
-      Vec4.new(x/scalar, y/scalar, z/scalar, w/scalar)
+      vec4(x/scalar, y/scalar, z/scalar, w/scalar)
     end
 
     def mag
@@ -183,29 +192,34 @@ module VectorMath
 
     def normalize
       m = mag
-      Vec4.new(x / m, y / m, z / m, w / m)
+      vec4(x / m, y / m, z / m, w / m)
     end
 
     def self.unit
-      Vec4.new(1.0, 1.0, 1.0, 1.0)
+      vec4(1.0, 1.0, 1.0, 1.0)
     end
 
     def self.x_unit
-      Vec4.new(1.0, 0.0, 0.0, 1.0)
+      vec4(1.0, 0.0, 0.0, 1.0)
     end
 
     def self.y_unit
-      Vec4.new(0.0, 1.0, 0.0, 1.0)
+      vec4(0.0, 1.0, 0.0, 1.0)
     end
 
     def self.z_unit
-      Vec4.new(0.0, 0.0, 1.0, 1.0)
+      vec4(0.0, 0.0, 1.0, 1.0)
     end
 
     def to_vec3
-      Vec3.new x/w, y/w, z/w
+      vec3 x/w, y/w, z/w
     end
 
+  end
+
+  # convenience function for creating Vec4
+  def vec4(x : Float64 = 0.0, y : Float64 = 0.0, z : Float64 = 0.0, w : Float64 = 0.0)
+    Vec4.new x, y, z, w
   end
 
 end
